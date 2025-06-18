@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/record.webp</file>
+        <file>img/noimg.png</file>
+        <file>img/previous.png</file>
+        <file>img/defaultavator.png</file>
+    </qresource>
+</RCC>

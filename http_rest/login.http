@@ -1,0 +1,22 @@
+### 发送验证码
+POST http://localhost:3000/captcha/sent?phone=13526932143
+Content-Type: application/json
+
+###
+
+### 使用验证码登录
+POST http://localhost:3000/login/cellphone?phone=13526932143&captcha=8194
+Content-Type: application/json
+
+###
+
+### 使用密码登录
+POST http://localhost:3000/login/cellphone?phone=13xxxxxxxxx&password=yourPasswordHere
+Content-Type: application/json
+
+###
+
+### 使用 MD5 密码登录（优先于明文密码）
+POST http://localhost:3000/login/cellphone?phone=13xxxxxxxxx&md5_password=md5HashedPassword
+Content-Type: application/json
+

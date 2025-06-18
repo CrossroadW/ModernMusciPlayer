@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/">
+        <file>src/qml/BottomWidget.qml</file>
+        <file>src/qml/LeftWidget.qml</file>
+        <file>src/qml/Main.qml</file>
+        <file>src/qml/MusicPage.qml</file>
+        <file>src/qml/PlayListQueue.qml</file>
+        <file>src/qml/RightWidget.qml</file>
+        <file>src/qml/com/Config.qml</file>
+        <file>src/qml/com/URectangle.qml</file>
+        <file>src/qml/leftwidget/UButton.qml</file>
+        <file>src/qml/rightwidget/DetailRow.qml</file>
+        <file>src/qml/rightwidget/PlayListDetail.qml</file>
+        <file>src/qml/rightwidget/SongUrlPage.qml</file>
+        <file>src/qml/rightwidget/SearchDetail.qml</file>
+        <file>src/qml/RecommendPage.qml</file>
+        <file>src/qml/recommonpage/MusicBannerView.qml</file>
+        <file>src/qml/recommonpage/MusicRoundImage.qml</file>
+        <file>src/qml/rightwidget/HotSearchPopup.qml</file>
+        <file>src/qml/com/HttpClient.js</file>
+        <file>src/qml/com/RoundImage.qml</file>
+        <file>src/qml/recommonpage/NewSongsView.qml</file>
+        <file>src/qml/com/MyRoundImage.qml</file>
+        <file>src/qml/RecentPlayList.qml</file>
+        <file>src/qml/RecentPlayListModel.qml</file>
+    </qresource>
+</RCC>

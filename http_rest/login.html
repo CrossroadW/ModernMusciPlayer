@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>扫码登录</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+    #qr {
+      margin: 20px auto;
+      width: 256px;
+      height: 256px;
+      border: 1px solid #ccc;
+    }
+    #status {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>扫码登录</h2>
+  <div id="qr">正在加载二维码...</div>
+  <div id="status">等待中...</div>
+
+  <script>
+    const baseURL = "http://localhost:3000";
+    let qrKey = "";
+    let intervalId = null;
+
+    async function fetchQrKey() {
+      const timestamp = Date.now();
+      const res = await fetch(`${baseURL}/login/qr/key?timestamp=${timestamp}`);
+      const data = await res.json();
+      qrKey = data.data.unikey;
+      fetchQrImg(qrKey);
+    }
+
+    async function fetchQrImg(key) {
+      const timestamp = Date.now();
+      const res = await fetch(`${baseURL}/login/qr/create?key=${key}&qrimg=true&timestamp=${timestamp}`);
+      const data = await res.json();
+      const imgBase64 = data.data.qrimg;
+
+      document.getElementById("qr").innerHTML = `<img src="${imgBase64}" width="256" height="256" />`;
+      document.getElementById("status").innerText = "请使用手机扫码登录";
+      startPolling(key);
+    }
+
+    async function checkQrStatus(key) {
+      const timestamp = Date.now();
+      const res = await fetch(`${baseURL}/login/qr/check?key=${key}&noCookie=true&timestamp=${timestamp}`);
+      const data = await res.json();
+
+      switch (data.code) {
+        case 800:
+          document.getElementById("status").innerText = "二维码已过期，请刷新页面重试。";
+          clearInterval(intervalId);
+          break;
+        case 801:
+          // 等待扫码
+          break;
+        case 802:
+          document.getElementById("status").innerText = "已扫码，等待确认...";
+          break;
+        case 803:
+          document.getElementById("status").innerText = "✅ 登录成功！";
+          clearInterval(intervalId);
+          break;
+        default:
+          console.warn("未知状态", data);
+      }
+    }
+
+    function startPolling(key) {
+      intervalId = setInterval(() => {
+        checkQrStatus(key);
+      }, 2000); // 每两秒轮询一次
+    }
+
+    // 页面加载完成时初始化
+    fetchQrKey();
+  </script>
+</body>
+</html>
