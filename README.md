@@ -1,3 +1,10 @@
+{
+  "C_Cpp.default.compileCommands": "/absolute/path/to/compile_commands.json"
+}
+awe@my-fedora:VideoPlayer$ git remote -v 
+origin  https://github.com/Lwh1019/VideoPlayer (fetch)
+origin  https://github.com/Lwh1019/VideoPlayer (push)
+
 # Qt c++ & Qml 在线音乐播放器
 这是一个基于 Qt C++ 与 QML 技术栈开发的在线音乐播放器，使用现代 UI 架构和模块化设计，支持 API 数据交互、异步请求、响应式界面、歌词滚动及播放控制等功能。
 
